@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="PT-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <form action="registro.php" method="POST" enctype="multipart/form-data">
+
+        <label>Nome:</label>
+        <input type="text" name="txtnome" > <br>
+
+        <img src="img1"> <br>
+
+        <label>Imagem:</label>
+        <input type="file" onchange="fnEnvio(this)" name="img">
+
+        <button>Enviar</button>
+    </form>
+</body>
+</html>
+<script>
+    function fnEnvio(img)
+    {
+        console.log(img.files);
+        if (img.files && img.files[0]) 
+        {
+            arquivo = new FileReader();
+            arquivo.onload = function(objeto)
+            { 
+                document.getElementsByTagName('img')[0].src = objeto.target.result;
+            }
+            arquivo.readAsDataURL(img.files[0]);
+        }
+    }
+</script>
